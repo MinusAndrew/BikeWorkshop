@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.Button?>
+
+<VBox spacing="15"
+      alignment="CENTER"
+      xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="co.edu.uniquindio.bikeworkshop.viewController.MainView">
+
+    <Button text="Registrar Cliente" onAction="#registerClient"/>
+    <Button text="Registrar Bicicleta" onAction="#registerBike"/>
+    <Button text="Registrar Mecánico" onAction="#registerMechanic"/>
+    <Button text="Nueva Orden" onAction="#newOrder"/>
+    <Button text="Historial por Bicicleta" onAction="#bikeRecord"/>
+    <Button text="Órdenes por Fecha" onAction="#orderByDate"/>
+
+</VBox>
+
