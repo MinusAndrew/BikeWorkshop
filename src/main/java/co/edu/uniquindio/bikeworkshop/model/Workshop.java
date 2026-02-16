@@ -35,9 +35,11 @@ public class Workshop {
         mechanicList.add(mechanic);
     }
 
-    public void registerClient(String name, String id, String phoneNumber, String address, Workshop theWorkshop) {
+    // Return what u create in the other methods plz so u can fix this mess
+    public Client registerClient(String name, String id, String phoneNumber, String address, Workshop theWorkshop) {
         Client client = new Client(name, id, phoneNumber, address, theWorkshop);
         clientList.add(client);
+        return client;
     }
 
     public void createOrder(int totalCost, LocalDate dateOfEntry, LocalDate hour, String reason, String diagnosis, String workMade, Workshop theWorkshop, Mechanic theMechanic, Bike theBike) {

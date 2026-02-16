@@ -5,6 +5,7 @@ module co.edu.uniquindio.bikeworkshop {
 
     opens co.edu.uniquindio.bikeworkshop to javafx.fxml;
     exports co.edu.uniquindio.bikeworkshop;
-    exports co.edu.uniquindio.bikeworkshop.controller;
-    opens co.edu.uniquindio.bikeworkshop.controller to javafx.fxml;
+    exports co.edu.uniquindio.bikeworkshop.model;
+    exports co.edu.uniquindio.bikeworkshop.viewController;
+    opens co.edu.uniquindio.bikeworkshop.viewController to javafx.fxml;
 }
