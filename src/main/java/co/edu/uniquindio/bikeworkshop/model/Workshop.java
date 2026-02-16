@@ -75,5 +75,9 @@ public class Workshop {
     public String getNit() {
         return nit;
     }
+
+    public String getName() {
+        return name;
+    }
 }
 
