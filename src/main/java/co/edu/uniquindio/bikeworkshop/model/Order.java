@@ -79,4 +79,18 @@ public class Order {
     public String getWorkMade() {
         return workMade;
     }
+
+    @Override
+    public String toString() {
+        return "Order{" +
+                "totalCost=" + totalCost +
+                ", hour=" + hour +
+                ", reason='" + reason + '\'' +
+                ", diagnosis='" + diagnosis + '\'' +
+                ", workMade='" + workMade + '\'' +
+                ", theWorkshop=" + theWorkshop +
+                ", theMechanic=" + theMechanic +
+                ", theBike=" + theBike +
+                '}';
+    }
 }
