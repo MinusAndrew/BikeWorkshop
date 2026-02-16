@@ -15,6 +15,7 @@ public class Workshop {
     private ArrayList<Client> clientList;
     private ArrayList<Mechanic> mechanicList;
 
+
     public Workshop(String name, String nit) {
         this.name = name;
         this.nit = nit;
@@ -72,12 +73,44 @@ public class Workshop {
         return bikeList;
     }
 
+    public ArrayList<Client> getClientList() {
+        return clientList;
+    }
+
+    public ArrayList<Mechanic> getMechanicList() {
+        return mechanicList;
+    }
+
     public String getNit() {
         return nit;
     }
 
     public String getName() {
         return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setNit(String nit) {
+        this.nit = nit;
+    }
+
+    public void setOrderList(ArrayList<Order> orderList) {
+        this.orderList = orderList;
+    }
+
+    public void setBikeList(ArrayList<Bike> bikeList) {
+        this.bikeList = bikeList;
+    }
+
+    public void setClientList(ArrayList<Client> clientList) {
+        this.clientList = clientList;
+    }
+
+    public void setMechanicList(ArrayList<Mechanic> mechanicList) {
+        this.mechanicList = mechanicList;
     }
 }
 
