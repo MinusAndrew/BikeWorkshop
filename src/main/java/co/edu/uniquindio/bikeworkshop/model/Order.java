@@ -11,9 +11,7 @@ public class Order {
 
     // Relationships
     private Workshop theWorkshop;
-
     private Mechanic theMechanic;
-
     private Bike theBike;
 
     public Order(int totalCost, LocalDate dateOfEntry, LocalDate hour, String reason, String diagnosis, String workMade, Workshop theWorkshop, Mechanic theMechanic, Bike theBike) {
