@@ -13,21 +13,15 @@ public class Bike {
 
     private Order theOrder;
 
-    private Workshop theWorkshop;
-
-    public Bike(int year, String brand, String color, String serialId, BikeType bikeType, Client theClient, Workshop theWorkshop) {
+    public Bike(int year, String brand, String color, String serialId, BikeType bikeType, Client theClient) {
         this.year = year;
         this.brand = brand;
         this.color = color;
         this.serialId = serialId;
         this.bikeType = bikeType;
         this.theClient = theClient;
-        this.theWorkshop = theWorkshop;
     }
 
-    public Workshop getTheWorkshop() {
-        return theWorkshop;
-    }
 
     public void setBikeType(BikeType bikeType) {
         this.bikeType = bikeType;
@@ -84,4 +78,5 @@ public class Bike {
     public void setSerialId(String serialId) {
         this.serialId = serialId;
     }
+
 }
