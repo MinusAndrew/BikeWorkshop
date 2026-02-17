@@ -1,6 +1,7 @@
 package co.edu.uniquindio.bikeworkshop;
 
 import co.edu.uniquindio.bikeworkshop.model.Client;
+import co.edu.uniquindio.bikeworkshop.model.Enums.MechanicSkillset;
 import co.edu.uniquindio.bikeworkshop.model.Workshop;
 import co.edu.uniquindio.bikeworkshop.viewController.MainView;
 import javafx.fxml.FXMLLoader;
@@ -16,6 +17,7 @@ public class WorkshopApplication extends javafx.application.Application {
         try {
             Workshop workshop = new Workshop("BikeWorkshop", "WYSI727");
             workshop.registerClient("Wincohax", "727W", "+838433", "XX24", workshop);
+            workshop.registerMechanic("Foxcobo","esau", MechanicSkillset.FRENOS);
 
             FXMLLoader fxmlLoader = new FXMLLoader(WorkshopApplication.class.getResource("MainView.fxml"));
             Scene scene = new Scene(fxmlLoader.load(), 320, 240);

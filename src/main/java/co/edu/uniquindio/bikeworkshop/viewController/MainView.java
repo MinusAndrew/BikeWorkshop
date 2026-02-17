@@ -42,6 +42,7 @@ public class MainView {
 
             BikeView bikeView = fxmlLoader.getController();
             bikeView.setTheWorkshop(theWorkshop);
+            bikeView.fillUpTable();
 
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             stage.setScene(scene);
@@ -59,13 +60,14 @@ public class MainView {
 
             MechanicView mechanicView = fxmlLoader.getController();
             mechanicView.setTheWorkshop(theWorkshop);
+            mechanicView.fillUpTable();
 
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             stage.setScene(scene);
-            stage.setTitle("Registrar Mechanico");
+            stage.setTitle("Registrar Mecanico");
 
         } catch (Exception e) {
-            error("Error abriendo BikeView: " + e.getMessage());
+            error("Error abriendo MechanicView: " + e.getMessage());
         }
     }
 

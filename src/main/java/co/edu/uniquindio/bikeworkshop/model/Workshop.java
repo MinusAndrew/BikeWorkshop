@@ -25,26 +25,28 @@ public class Workshop {
         this.mechanicList = new ArrayList<>();
     }
 
-    public void registerBike(int year, String brand, String color, String serialId, BikeType bikeType, Client theClient, Workshop theWorkshop) {
-        Bike bike = new Bike(year, brand, color, serialId, bikeType, theClient, theWorkshop);
+    public Bike registerBike(int year, String brand, String color, String serialId, BikeType bikeType, Client theClient) {
+        Bike bike = new Bike(year, brand, color, serialId, bikeType, theClient);
         bikeList.add(bike);
+        return bike;
     }
 
-    public void registerMechanic(String fullName, String internalId, MechanicSkillset mechanicSkillset) {
+    public Mechanic registerMechanic(String fullName, String internalId, MechanicSkillset mechanicSkillset) {
         Mechanic mechanic = new Mechanic(fullName, internalId, mechanicSkillset);
         mechanicList.add(mechanic);
+        return mechanic;
     }
 
-    // Return what u create in the other methods plz so u can fix this mess
     public Client registerClient(String name, String id, String phoneNumber, String address, Workshop theWorkshop) {
         Client client = new Client(name, id, phoneNumber, address, theWorkshop);
         clientList.add(client);
         return client;
     }
 
-    public void createOrder(int totalCost, LocalDate dateOfEntry, LocalDate hour, String reason, String diagnosis, String workMade, Workshop theWorkshop, Mechanic theMechanic, Bike theBike) {
+    public Order createOrder(int totalCost, LocalDate dateOfEntry, LocalDate hour, String reason, String diagnosis, String workMade, Workshop theWorkshop, Mechanic theMechanic, Bike theBike) {
         Order order = new Order(totalCost, dateOfEntry, hour, reason, diagnosis, workMade, theWorkshop, theMechanic, theBike);
         orderList.add(order);
+        return order;
     }
 
     public void checkOrderByDate (LocalDate date) {

@@ -46,4 +46,14 @@ public class Mechanic {
     public void setInternalId(String internalId) {
         this.internalId = internalId;
     }
+
+    @Override
+    public String toString() {
+        return "Mechanic{" +
+                "fullName='" + fullName + '\'' +
+                ", internalId='" + internalId + '\'' +
+                ", mechanicSkillset=" + mechanicSkillset +
+                ", theOrder=" + theOrder +
+                '}';
+    }
 }
