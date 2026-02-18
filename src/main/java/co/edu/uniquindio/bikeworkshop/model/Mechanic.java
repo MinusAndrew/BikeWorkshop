@@ -23,28 +23,8 @@ public class Mechanic {
         this.theOrder = theOrder;
     }
 
-    public MechanicSkillset getMechanicSkillset() {
-        return mechanicSkillset;
-    }
-
-    public void setMechanicSkillset(MechanicSkillset mechanicSkillset) {
-        this.mechanicSkillset = mechanicSkillset;
-    }
-
-    public String getFullName() {
-        return fullName;
-    }
-
-    public void setFullName(String fullName) {
-        this.fullName = fullName;
-    }
-
     public String getInternalId() {
         return internalId;
-    }
-
-    public void setInternalId(String internalId) {
-        this.internalId = internalId;
     }
 
     @Override
@@ -55,5 +35,13 @@ public class Mechanic {
                 ", mechanicSkillset=" + mechanicSkillset +
                 ", theOrder=" + theOrder +
                 '}';
+    }
+
+    public String getFullName() {
+        return fullName;
+    }
+
+    public MechanicSkillset getMechanicSkillset() {
+        return mechanicSkillset;
     }
 }

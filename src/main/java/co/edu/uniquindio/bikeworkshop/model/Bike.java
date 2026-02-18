@@ -22,11 +22,6 @@ public class Bike {
         this.theClient = theClient;
     }
 
-
-    public void setBikeType(BikeType bikeType) {
-        this.bikeType = bikeType;
-    }
-
     public Client getTheClient() {
         return theClient;
     }
@@ -51,32 +46,17 @@ public class Bike {
         return year;
     }
 
-    public void setYear(int year) {
-        this.year = year;
-    }
-
     public String getBrand() {
         return brand;
-    }
-
-    public void setBrand(String brand) {
-        this.brand = brand;
     }
 
     public String getColor() {
         return color;
     }
 
-    public void setColor(String color) {
-        this.color = color;
-    }
 
     public String getSerialId() {
         return serialId;
-    }
-
-    public void setSerialId(String serialId) {
-        this.serialId = serialId;
     }
 
 }

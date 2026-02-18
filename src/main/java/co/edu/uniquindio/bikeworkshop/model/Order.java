@@ -28,22 +28,6 @@ public class Order {
         this.theBike = theBike;
     }
 
-    public Bike getTheBike() {
-        return theBike;
-    }
-
-    public void setTheBike(Bike theBike) {
-        this.theBike = theBike;
-    }
-
-    public Mechanic getTheMechanic() {
-        return theMechanic;
-    }
-
-    public void setTheMechanic(Mechanic theMechanic) {
-        this.theMechanic = theMechanic;
-    }
-
     public Workshop getTheWorkshop() {
         return theWorkshop;
     }
@@ -64,18 +48,6 @@ public class Order {
         return dateOfEntry;
     }
 
-    public LocalTime getHour() {
-        return hour;
-    }
-
-    public String getReason() {
-        return reason;
-    }
-
-    public String getDiagnosis() {
-        return diagnosis;
-    }
-
     public String getWorkMade() {
         return workMade;
     }
@@ -92,5 +64,25 @@ public class Order {
                 ", theMechanic=" + theMechanic +
                 ", theBike=" + theBike +
                 '}';
+    }
+
+    public String getDiagnosis() {
+        return diagnosis;
+    }
+
+    public LocalTime getHour() {
+        return hour;
+    }
+
+    public String getReason() {
+        return reason;
+    }
+
+    public Bike getTheBike() {
+        return theBike;
+    }
+
+    public Mechanic getTheMechanic() {
+        return theMechanic;
     }
 }

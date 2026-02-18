@@ -9,8 +9,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.stage.Stage;
 
-import static co.edu.uniquindio.bikeworkshop.WorkshopApplication.workInProgress;
-
 public class MainView {
     private Workshop theWorkshop;
 
@@ -82,7 +80,7 @@ public class MainView {
 
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             stage.setScene(scene);
-            stage.setTitle("Registrar Mechanico");
+            stage.setTitle("Registrar Orden");
 
         } catch (Exception e) {
             error("Error abriendo OrderView: " + e.getMessage());
@@ -107,8 +105,21 @@ public class MainView {
         }
     }
 
-    public void orderByDate(){
-        workInProgress("WIP");
+    public void orderByDate(ActionEvent event){
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(WorkshopApplication.class.getResource("SubMenu/DateView.fxml"));
+            Scene scene = new Scene(fxmlLoader.load(), 720, 450);
+
+            DateView dateView = fxmlLoader.getController();
+            dateView.setTheWorkshop(theWorkshop);
+
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(scene);
+            stage.setTitle("Orden Por Dia");
+
+        } catch (Exception e) {
+            error("Error abriendo DateView: " + e.getMessage());
+        }
     }
 
     public void error(String msg){

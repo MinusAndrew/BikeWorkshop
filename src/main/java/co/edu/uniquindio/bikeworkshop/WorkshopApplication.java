@@ -7,9 +7,11 @@ import co.edu.uniquindio.bikeworkshop.viewController.MainView;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.Optional;
 
 public class WorkshopApplication extends javafx.application.Application {
     @Override
@@ -45,6 +47,16 @@ public class WorkshopApplication extends javafx.application.Application {
         Alert messageBox = new Alert(Alert.AlertType.INFORMATION);
         messageBox.setContentText(msg);
         messageBox.show();
+    }
+
+    public static boolean confirmAlert(String title, String msg){
+
+        Alert confirmAlert = new Alert(Alert.AlertType.CONFIRMATION);
+        confirmAlert.setTitle(title);
+        confirmAlert.setContentText(msg);
+        Optional<ButtonType> result = confirmAlert.showAndWait();
+
+        return result.map(buttonType -> buttonType.equals(ButtonType.OK)).orElse(false);
     }
 
 }
