@@ -34,6 +34,10 @@ public class OrderController {
         return null;
     }
 
+    public boolean rusRoulette(Workshop theWorkshop, Order order){
+       return theWorkshop.russianRoulette(order);
+    }
+
     public ArrayList<Order> orderList(Workshop theWorkshop){
         return theWorkshop.getOrderList();
     }

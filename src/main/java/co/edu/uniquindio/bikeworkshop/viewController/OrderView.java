@@ -17,7 +17,7 @@ import java.time.LocalTime;
 import java.util.ResourceBundle;
 
 import static co.edu.uniquindio.bikeworkshop.WorkshopApplication.alert;
-import static co.edu.uniquindio.bikeworkshop.WorkshopApplication.workInProgress;
+import static co.edu.uniquindio.bikeworkshop.WorkshopApplication.confirmAlert;
 
 public class OrderView implements Initializable {
     private Workshop theWorkshop;
@@ -48,12 +48,7 @@ public class OrderView implements Initializable {
         colMechId.setCellValueFactory(new PropertyValueFactory<>("internalId"));
         colMechSkillset.setCellValueFactory(new PropertyValueFactory<>("mechanicSkillset"));
 
-        colDateOfEntry.setCellValueFactory(new PropertyValueFactory<>("dateOfEntry"));
-        colHourOfEntry.setCellValueFactory(new PropertyValueFactory<>("hour"));
-        colReason.setCellValueFactory(new PropertyValueFactory<>("reason"));
-        colDiagnosis.setCellValueFactory(new PropertyValueFactory<>("diagnosis"));
-        colWorkMade.setCellValueFactory(new PropertyValueFactory<>("workMade"));
-        colTotalCost.setCellValueFactory(new PropertyValueFactory<>("totalCost"));
+        setOrderTables(colDateOfEntry, colHourOfEntry, colReason, colDiagnosis, colWorkMade, colTotalCost);
 
         colYear.setCellValueFactory(new PropertyValueFactory<>("year"));
         colBrand.setCellValueFactory(new PropertyValueFactory<>("brand"));
@@ -62,6 +57,15 @@ public class OrderView implements Initializable {
         colBikeType.setCellValueFactory(new PropertyValueFactory<>("bikeType"));
         colClient.setCellValueFactory(new PropertyValueFactory<>("theClient"));
 
+    }
+
+    public static void setOrderTables(TableColumn<Order, String> colDateOfEntry, TableColumn<Order, String> colHourOfEntry, TableColumn<Order, String> colReason, TableColumn<Order, String> colDiagnosis, TableColumn<Order, String> colWorkMade, TableColumn<Order, String> colTotalCost) {
+        colDateOfEntry.setCellValueFactory(new PropertyValueFactory<>("dateOfEntry"));
+        colHourOfEntry.setCellValueFactory(new PropertyValueFactory<>("hour"));
+        colReason.setCellValueFactory(new PropertyValueFactory<>("reason"));
+        colDiagnosis.setCellValueFactory(new PropertyValueFactory<>("diagnosis"));
+        colWorkMade.setCellValueFactory(new PropertyValueFactory<>("workMade"));
+        colTotalCost.setCellValueFactory(new PropertyValueFactory<>("totalCost"));
     }
 
     public void fillUpTables() {
@@ -98,29 +102,42 @@ public class OrderView implements Initializable {
         Mechanic mechanic = grabSelectedMechanic();
 
         //checks
-        if (reason.isEmpty() || diagnosis.isEmpty() || workMade.isEmpty() || txtTotalCost.getText().isEmpty()) {
-            if (totalCost < 0){
-                alert(Alert.AlertType.WARNING, "Costo Invalido", "ingrese un costo valido");
-                return;
-            }
+        if (reason.isEmpty() || diagnosis.isEmpty() || workMade.isEmpty()) {
             alert(Alert.AlertType.WARNING, "Campos incompletos", "Por favor llena todos los campos.");
             return;
         }
 
         boolean itExists = orderController.checkMechanic(mechanic);
         if (itExists) {
-            alert(Alert.AlertType.ERROR, "Duplicado", "Ya hay un mecanico con una orden existente.");
+            alert(Alert.AlertType.ERROR, "Duplicado", "El mecanico ya cuenta con una orden existente.");
             return;
         }
 
         //here is the mess
+        if (totalCost < 0){
+            alert(Alert.AlertType.WARNING, "Costo Invalido", "ingrese un costo valido");
+            return;
+        }
+
         Order tmp = orderController.addOrder(theWorkshop, date, hour, reason, diagnosis, workMade, totalCost, mechanic, bike);
+
+        //Russian Roulette
+        boolean wannaPlay = confirmAlert("Ruleta!", "Deseas Jugar a la ruleta rusa? (Se te descontará un 25% de la orden si ganas y un 10% si pierdes).");
+        if (wannaPlay){
+            boolean luck = orderController.rusRoulette(theWorkshop, tmp);
+            if (luck){
+                alert(Alert.AlertType.ERROR,"Perdiste", "Se ha incrementado el valor de la orden un 10%.");
+            }
+            else {
+                alert(Alert.AlertType.INFORMATION, "Ganador", "Se te ha descontado un 25%.");
+            }
+        }
         clearForum();
 
         alert(Alert.AlertType.INFORMATION, "Guardado", "Orden creada correctamente.");
 
         tblOrder.getItems().add(tmp);
-
+        tblMechanic.getItems().remove(mechanic);
     }
 
     public void clearForum(){
@@ -180,7 +197,11 @@ public class OrderView implements Initializable {
     }
 
     public int grabTotalCost(){
-        return Integer.parseInt(txtTotalCost.getText());
+        try {
+            return Integer.parseInt(txtTotalCost.getText());
+        } catch (NumberFormatException e) {
+            return -1;
+        }
     }
 
     public String grabClientId(){

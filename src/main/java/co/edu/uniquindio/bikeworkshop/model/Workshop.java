@@ -49,16 +49,18 @@ public class Workshop {
         Order order = new Order(totalCost, dateOfEntry, hour, reason, diagnosis, workMade, theWorkshop, theMechanic, theBike);
         orderList.add(order);
         theBike.setTheOrder(order);
+        theMechanic.setTheOrder(order);
         return order;
     }
 
-    public String checkOrderByDate (LocalDate date) {
-        for(Order order : orderList){
-            if(order.getDateOfEntry().isEqual(date)){
-                return order.toString();
+    public ArrayList<Order> checkOrderByDate(LocalDate date) {
+        ArrayList<Order> newList = new ArrayList<>();
+        for (Order order : orderList){
+            if (order.getDateOfEntry().isEqual(date)){
+                newList.add(order);
             }
         }
-        return "No se encontró la orden.";
+        return newList;
     }
 
     public boolean russianRoulette(Order order) {
@@ -91,36 +93,12 @@ public class Workshop {
         return mechanicList;
     }
 
-    public String getNit() {
-        return nit;
-    }
-
     public String getName() {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setNit(String nit) {
-        this.nit = nit;
-    }
-
-    public void setOrderList(ArrayList<Order> orderList) {
-        this.orderList = orderList;
-    }
-
-    public void setBikeList(ArrayList<Bike> bikeList) {
-        this.bikeList = bikeList;
-    }
-
-    public void setClientList(ArrayList<Client> clientList) {
-        this.clientList = clientList;
-    }
-
-    public void setMechanicList(ArrayList<Mechanic> mechanicList) {
-        this.mechanicList = mechanicList;
+    public String getNit() {
+        return nit;
     }
 }
 
