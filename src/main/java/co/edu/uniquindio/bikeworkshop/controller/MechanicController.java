@@ -18,6 +18,6 @@ public class MechanicController {
     }
 
     public Mechanic addMechanic(Workshop theWorkshop, String fullName, String internalId, MechanicSkillset mechanicSkillset){
-        return theWorkshop.registerMechanic(fullName, internalId, mechanicSkillset);
+        return theWorkshop.registerMechanic(fullName, internalId, mechanicSkillset, theWorkshop);
     }
 }
