@@ -33,8 +33,8 @@ public class Workshop {
         return bike;
     }
 
-    public Mechanic registerMechanic(String fullName, String internalId, MechanicSkillset mechanicSkillset) {
-        Mechanic mechanic = new Mechanic(fullName, internalId, mechanicSkillset);
+    public Mechanic registerMechanic(String fullName, String internalId, MechanicSkillset mechanicSkillset, Workshop theWorkshop) {
+        Mechanic mechanic = new Mechanic(fullName, internalId, mechanicSkillset, theWorkshop);
         mechanicList.add(mechanic);
         return mechanic;
     }

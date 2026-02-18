@@ -1,6 +1,7 @@
 package co.edu.uniquindio.bikeworkshop;
 
 import co.edu.uniquindio.bikeworkshop.model.Client;
+import co.edu.uniquindio.bikeworkshop.model.Enums.BikeType;
 import co.edu.uniquindio.bikeworkshop.model.Enums.MechanicSkillset;
 import co.edu.uniquindio.bikeworkshop.model.Workshop;
 import co.edu.uniquindio.bikeworkshop.viewController.MainView;
@@ -11,6 +12,8 @@ import javafx.scene.control.ButtonType;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.Optional;
 
 public class WorkshopApplication extends javafx.application.Application {
@@ -18,8 +21,7 @@ public class WorkshopApplication extends javafx.application.Application {
     public void start(Stage stage) throws IOException {
         try {
             Workshop workshop = new Workshop("BikeWorkshop", "WYSI727");
-            workshop.registerClient("Wincohax", "727W", "+838433", "XX24", workshop);
-            workshop.registerMechanic("Foxcobo","esau", MechanicSkillset.FRENOS);
+            workshop.registerMechanic("Foxcobo","esau", MechanicSkillset.FRENOS, workshop);
 
             FXMLLoader fxmlLoader = new FXMLLoader(WorkshopApplication.class.getResource("MainView.fxml"));
             Scene scene = new Scene(fxmlLoader.load(), 320, 240);

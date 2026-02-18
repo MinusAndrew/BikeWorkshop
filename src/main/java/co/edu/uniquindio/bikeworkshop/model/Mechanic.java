@@ -5,14 +5,16 @@ import co.edu.uniquindio.bikeworkshop.model.Enums.MechanicSkillset;
 public class Mechanic {
     private String fullName, internalId;
     private MechanicSkillset mechanicSkillset;
+    private Workshop theWorkshop;
 
     // Relationships
     private Order theOrder;
 
-    public Mechanic(String fullName, String internalId, MechanicSkillset mechanicSkillset) {
+    public Mechanic(String fullName, String internalId, MechanicSkillset mechanicSkillset, Workshop theWorkshop) {
         this.fullName = fullName;
         this.internalId = internalId;
         this.mechanicSkillset = mechanicSkillset;
+        this.theWorkshop = theWorkshop;
     }
 
     public Order getTheOrder() {
@@ -43,5 +45,9 @@ public class Mechanic {
 
     public MechanicSkillset getMechanicSkillset() {
         return mechanicSkillset;
+    }
+
+    public Workshop getTheWorkshop() {
+        return theWorkshop;
     }
 }
