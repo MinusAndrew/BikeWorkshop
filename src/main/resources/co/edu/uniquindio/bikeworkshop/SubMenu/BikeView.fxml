@@ -43,13 +43,15 @@
                 <Label contentDisplay="RIGHT" text="Marca" GridPane.columnIndex="0" GridPane.rowIndex="1" />
                 <TextField fx:id="txtBrand" GridPane.columnIndex="1" GridPane.rowIndex="1" />
 
-                <Label contentDisplay="RIGHT" prefHeight="18.0" prefWidth="149.0" text="                            Color" textAlignment="RIGHT" GridPane.columnIndex="2" />
+                <Label contentDisplay="RIGHT" prefHeight="18.0" prefWidth="149.0" text="                            Color:" textAlignment="RIGHT" GridPane.columnIndex="2" />
                 <TextField fx:id="txtYear" GridPane.columnIndex="3" GridPane.rowIndex="1" />
 
-                <Label prefHeight="18.0" prefWidth="152.0" text="                            Año" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                <Label prefHeight="18.0" prefWidth="152.0" text="                            Año:" GridPane.columnIndex="2" GridPane.rowIndex="1" />
                 <TextField fx:id="txtColor" GridPane.columnIndex="3" />
             <ChoiceBox fx:id="BikeTypeBox" prefHeight="26.0" prefWidth="161.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
             <Label contentDisplay="RIGHT" prefHeight="18.0" prefWidth="63.0" text="Tipo" GridPane.rowIndex="2" />
+            <TextField fx:id="txtClientId" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+            <Label text="                    ID del cliente:" GridPane.columnIndex="2" GridPane.rowIndex="2" />
             <columnConstraints>
                <ColumnConstraints />
                <ColumnConstraints />

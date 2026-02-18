@@ -3,10 +3,12 @@ package co.edu.uniquindio.bikeworkshop.model;
 import co.edu.uniquindio.bikeworkshop.model.Enums.MechanicSkillset;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 
 public class Order {
     private int totalCost;
-    private LocalDate dateOfEntry, hour;
+    private LocalDate dateOfEntry;
+    private LocalTime hour;
     private String reason, diagnosis, workMade;
 
     // Relationships
@@ -14,7 +16,7 @@ public class Order {
     private Mechanic theMechanic;
     private Bike theBike;
 
-    public Order(int totalCost, LocalDate dateOfEntry, LocalDate hour, String reason, String diagnosis, String workMade, Workshop theWorkshop, Mechanic theMechanic, Bike theBike) {
+    public Order(int totalCost, LocalDate dateOfEntry, LocalTime hour, String reason, String diagnosis, String workMade, Workshop theWorkshop, Mechanic theMechanic, Bike theBike) {
         this.totalCost = totalCost;
         this.dateOfEntry = dateOfEntry;
         this.hour = hour;
@@ -62,7 +64,7 @@ public class Order {
         return dateOfEntry;
     }
 
-    public LocalDate getHour() {
+    public LocalTime getHour() {
         return hour;
     }
 

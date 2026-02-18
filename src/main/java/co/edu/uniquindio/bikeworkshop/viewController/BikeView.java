@@ -16,7 +16,6 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import static co.edu.uniquindio.bikeworkshop.WorkshopApplication.alert;
-import static co.edu.uniquindio.bikeworkshop.WorkshopApplication.workInProgress;
 
 public class BikeView implements Initializable {
     private Workshop theWorkshop;
@@ -33,17 +32,21 @@ public class BikeView implements Initializable {
     private TableColumn<Bike, String> colId, colBrand, colColor, colYear, colType;
 
     @FXML
-    private TextField txtSerialId, txtBrand, txtColor, txtYear;
+    private TextField txtSerialId, txtBrand, txtColor, txtYear, txtClientId;
 
     @FXML
     private ChoiceBox<String> BikeTypeBox;
 
     private final BikeType[] bikeTypes = BikeType.values();
 
-
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle){
         BikeTypeBox.getItems().addAll(getAllBikeType());
+        setupBikeTables(colId, colBrand, colColor, colYear, colType);
+        BikeTypeBox.setValue("RUTA");
+    }
+
+    public static void setupBikeTables(TableColumn<Bike, String> colId, TableColumn<Bike, String> colBrand, TableColumn<Bike, String> colColor, TableColumn<Bike, String> colYear, TableColumn<Bike, String> colType) {
         colId.setCellValueFactory(new PropertyValueFactory<>("serialId"));
         colBrand.setCellValueFactory(new PropertyValueFactory<>("brand"));
         colColor.setCellValueFactory(new PropertyValueFactory<>("color"));
@@ -59,10 +62,18 @@ public class BikeView implements Initializable {
         String serialId = grabSerialId();
         String brand = grabBrand();
         String color = grabColor();
-        String year = grabYear();
+        int year = grabYear();
+        String clientId = grabClientId();
         BikeType bikeOptions = BikeType.valueOf(BikeTypeBox.getValue());
 
-        if(serialId.isEmpty() || brand.isEmpty() || color.isEmpty() || year.isEmpty() || BikeTypeBox.getValue().isEmpty()){
+        Client client = getClientFromId(theWorkshop, clientId);
+
+        if (year < 1990 || year >= 7270){
+            alert(Alert.AlertType.WARNING, "Año Invalido", "ingrese un año valido");
+            return;
+        }
+
+        if(serialId.isEmpty() || brand.isEmpty() || color.isEmpty() || clientId.isEmpty()){
             alert(Alert.AlertType.WARNING, "Campos incompletos", "Por favor llena todos los campos.");
             return;
         }
@@ -73,10 +84,20 @@ public class BikeView implements Initializable {
             return;
         }
 
-        Bike tmp = bikeController.addBike(theWorkshop, Integer.parseInt(year), brand, color, serialId, bikeOptions, null);
-        clearForum();
-        alert(Alert.AlertType.INFORMATION, "Guardado", "Bicicleta registrada correctamente.");
-        tblBike.getItems().add(tmp);
+        if (client != null){
+            Bike tmp = bikeController.addBike(theWorkshop, year, brand, color, serialId, bikeOptions, client);
+            clearForum();
+            alert(Alert.AlertType.INFORMATION, "Guardado", "Bicicleta registrada correctamente.");
+            tblBike.getItems().add(tmp);
+        }
+        else {
+            alert(Alert.AlertType.ERROR, "Cliente Invalido", "No hay cliente con dicha indentificacion.");
+        }
+
+    }
+
+    public Client getClientFromId(Workshop theWorkshop, String id){
+        return bikeController.searchClient(theWorkshop, id);
     }
 
     public void clearForum(){
@@ -84,6 +105,7 @@ public class BikeView implements Initializable {
         txtColor.clear();
         txtBrand.clear();
         txtSerialId.clear();
+        txtClientId.clear();
     }
 
     public void backToMenu(){
@@ -123,8 +145,17 @@ public class BikeView implements Initializable {
         return txtColor.getText().trim();
     }
 
-    public String grabYear(){
-        return txtYear.getText().trim();
+    public int grabYear(){
+        try {
+            return Integer.parseInt(txtYear.getText().trim());
+        } catch (NumberFormatException e) {
+            alert(Alert.AlertType.WARNING, "Año Invalido", "ingrese un año valido");
+            return Integer.parseInt(txtYear.getText().trim());
+        }
+    }
+
+    public String grabClientId(){
+        return txtClientId.getText().trim();
     }
 
     public void setTheWorkshop(Workshop theWorkshop) {

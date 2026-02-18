@@ -4,6 +4,7 @@ import co.edu.uniquindio.bikeworkshop.model.Enums.BikeType;
 import co.edu.uniquindio.bikeworkshop.model.Enums.MechanicSkillset;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 
 public class Workshop {
@@ -28,6 +29,7 @@ public class Workshop {
     public Bike registerBike(int year, String brand, String color, String serialId, BikeType bikeType, Client theClient) {
         Bike bike = new Bike(year, brand, color, serialId, bikeType, theClient);
         bikeList.add(bike);
+        theClient.getBikeList().add(bike);
         return bike;
     }
 
@@ -43,29 +45,33 @@ public class Workshop {
         return client;
     }
 
-    public Order createOrder(int totalCost, LocalDate dateOfEntry, LocalDate hour, String reason, String diagnosis, String workMade, Workshop theWorkshop, Mechanic theMechanic, Bike theBike) {
+    public Order createOrder(int totalCost, LocalDate dateOfEntry, LocalTime hour, String reason, String diagnosis, String workMade, Workshop theWorkshop, Mechanic theMechanic, Bike theBike) {
         Order order = new Order(totalCost, dateOfEntry, hour, reason, diagnosis, workMade, theWorkshop, theMechanic, theBike);
         orderList.add(order);
+        theBike.setTheOrder(order);
         return order;
     }
 
-    public void checkOrderByDate (LocalDate date) {
+    public String checkOrderByDate (LocalDate date) {
         for(Order order : orderList){
             if(order.getDateOfEntry().isEqual(date)){
-                System.out.println(order);
+                return order.toString();
             }
         }
+        return "No se encontró la orden.";
     }
 
-    public void russianRoulette(Order order) {
+    public boolean russianRoulette(Order order) {
         double bullet = Math.random()*10;
         int price = order.getTotalCost();
         if(bullet < (double)10/6){
             order.setTotalCost(price + (int)(price*0.1));
             System.out.println("+10%");
+            return true;
         } else {
             order.setTotalCost(price - (int)(price*0.25));
             System.out.println("-25%");
+            return false;
         }
     }
 
