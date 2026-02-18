@@ -64,4 +64,17 @@ public class Client{
     public void setAddress(String address) {
         this.address = address;
     }
+
+    @Override
+    public String toString() {
+        return "Client{" +
+                "name='" + name + '\'' +
+                ", id='" + id + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                ", address='" + address + '\'' +
+                ", theWorkshop=" + theWorkshop +
+                ", orderList=" + orderList +
+                ", bikeList=" + bikeList +
+                '}';
+    }
 }

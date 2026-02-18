@@ -30,7 +30,7 @@ public class MainView {
             stage.setTitle("Registrar Cliente");
 
         } catch (Exception e) {
-            error("Error abriendo ClienteView: " + e.getMessage());
+            error("Error abriendo ClientView: " + e.getMessage());
         }
 
     }
@@ -46,7 +46,7 @@ public class MainView {
 
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             stage.setScene(scene);
-            stage.setTitle("Registrar Bici");
+            stage.setTitle("Registrar Bicicleta");
 
         } catch (Exception e) {
             error("Error abriendo BikeView: " + e.getMessage());
@@ -74,22 +74,37 @@ public class MainView {
     public void newOrder(ActionEvent event) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(WorkshopApplication.class.getResource("SubMenu/OrderView.fxml"));
-            Scene scene = new Scene(fxmlLoader.load(), 720, 450);
+            Scene scene = new Scene(fxmlLoader.load(), 720, 800);
 
             OrderView orderView = fxmlLoader.getController();
             orderView.setTheWorkshop(theWorkshop);
+            orderView.fillUpTables();
 
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             stage.setScene(scene);
             stage.setTitle("Registrar Mechanico");
 
         } catch (Exception e) {
-            error("Error abriendo BikeView: " + e.getMessage());
+            error("Error abriendo OrderView: " + e.getMessage());
         }
     }
 
-    public void bikeRecord(){
-        workInProgress("WIP");
+    public void bikeRecord(ActionEvent event){
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(WorkshopApplication.class.getResource("SubMenu/BikeHistoryView.fxml"));
+            Scene scene = new Scene(fxmlLoader.load(), 720, 450);
+
+            BikeHistoryView bikeHistoryView = fxmlLoader.getController();
+            bikeHistoryView.setTheWorkshop(theWorkshop);
+            bikeHistoryView.fillUpTable();
+
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(scene);
+            stage.setTitle("Historial de Bicicletas");
+
+        } catch (Exception e) {
+            error("Error abriendo BikeHistoryView: " + e.getMessage());
+        }
     }
 
     public void orderByDate(){

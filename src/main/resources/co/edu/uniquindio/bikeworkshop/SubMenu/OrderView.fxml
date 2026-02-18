@@ -6,6 +6,7 @@
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
@@ -35,19 +36,12 @@
             <padding>
                 <Insets bottom="15" left="15" right="15" top="15" />
             </padding>
-            <GridPane hgap="10" vgap="10">
-                <Label text="Nombre completo:" GridPane.columnIndex="0" GridPane.rowIndex="0" />
-                <TextField fx:id="txtName" GridPane.columnIndex="1" GridPane.rowIndex="0" />
-
-                <Label text="Identificación:" GridPane.columnIndex="0" GridPane.rowIndex="1" />
-                <TextField fx:id="txtId" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-
-                <Label text="Teléfono:" GridPane.columnIndex="0" GridPane.rowIndex="2" />
-                <TextField fx:id="txtPhoneNum" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-
-                <Label text="Dirección:" GridPane.columnIndex="0" GridPane.rowIndex="3" />
-                <TextField fx:id="txtAddress" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+         <GridPane hgap="10" prefHeight="76.0" prefWidth="690.0">
             <columnConstraints>
+               <ColumnConstraints />
+               <ColumnConstraints />
+               <ColumnConstraints />
+               <ColumnConstraints />
                <ColumnConstraints />
                <ColumnConstraints />
             </columnConstraints>
@@ -56,26 +50,82 @@
                <RowConstraints />
                <RowConstraints />
                <RowConstraints />
+               <RowConstraints />
+               <RowConstraints />
+            </rowConstraints>
+            <children>
+               <Label text="ID del Cliente:" GridPane.columnIndex="0" />
+               <TextField fx:id="txtClientId" GridPane.columnIndex="1" />
+               <Button fx:id="searchButton" mnemonicParsing="false" onAction="#searchButtonAction" text="Buscar" GridPane.columnIndex="2" />
+            </children>
+         </GridPane>
+         <Separator prefWidth="200.0" />
+            <GridPane hgap="10" vgap="10">
+                <Label text="Razón:" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+                <TextField fx:id="txtReason" GridPane.columnIndex="1" />
+
+                <Label text="Diagnostico:" GridPane.rowIndex="2" />
+                <TextField fx:id="txtDiagnosis" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+
+                <Label text="Costo Total:" GridPane.rowIndex="4" />
+                <TextField fx:id="txtTotalCost" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <columnConstraints>
+               <ColumnConstraints />
+               <ColumnConstraints />
+               <ColumnConstraints />
+            </columnConstraints>
+            <rowConstraints>
+               <RowConstraints />
+               <RowConstraints />
+               <RowConstraints />
+               <RowConstraints />
+               <RowConstraints />
+               <RowConstraints />
             </rowConstraints>
             </GridPane>
-
-            <HBox spacing="10">
-                <Button onAction="#saveClient" text="Guardar" />
-                <Button onAction="#clearForum" text="Limpiar" />
-            </HBox>
+         <Label text="Trabajo Realizado:" />
+         <TextArea fx:id="txtWorkMade" prefHeight="200.0" prefWidth="200.0" text="N/A" />
+         <Separator />
+         <Label style="-fx-font-size: 14px; -fx-font-weight: bold;" text="Bicicletas del Cliente" />
+         <TableView fx:id="tblBike" prefHeight="240">
+            <columns>
+               <TableColumn fx:id="colYear" prefWidth="99.7886734008789" text="Año" />
+               <TableColumn fx:id="colBrand" minWidth="0.0" prefWidth="114.48971557617188" text="Marca" />
+               <TableColumn fx:id="colColor" minWidth="0.0" prefWidth="103.44329833984375" text="Color" />
+               <TableColumn fx:id="colSerialId" minWidth="0.0" prefWidth="105.05148315429688" text="ID de Serial" />
+               <TableColumn fx:id="colBikeType" minWidth="0.0" prefWidth="108.9329833984375" text="Tipo de Bicicleta" />
+               <TableColumn fx:id="colClient" minWidth="0.0" prefWidth="156.5" text="Cliente" />
+            </columns>
+         </TableView>
+         <Separator />
+         <Label style="-fx-font-size: 14px; -fx-font-weight: bold;" text="Mechanicos Disponibles" />
+         <TableView fx:id="tblMechanic" prefHeight="240">
+            <columns>
+               <TableColumn fx:id="colMechName" prefWidth="240.91314315795898" text="Nombre" />
+               <TableColumn fx:id="colMechId" minWidth="0.0" prefWidth="207.82440185546875" text="Identificación" />
+               <TableColumn fx:id="colMechSkillset" minWidth="0.0" prefWidth="240.67559814453125" text="Especialidad" />
+            </columns>
+         </TableView>
 
             <Separator />
 
             <Label style="-fx-font-size: 14px; -fx-font-weight: bold;" text="Ordenes registradas" />
 
-            <TableView fx:id="tblClient" prefHeight="240">
+            <TableView fx:id="tblOrder" prefHeight="240">
                 <columns>
-                    <TableColumn fx:id="colName" prefWidth="220" text="Nombre" />
-                    <TableColumn fx:id="colId" prefWidth="140" text="Identificación" />
-                    <TableColumn fx:id="colPhoneNum" prefWidth="120" text="Teléfono" />
-                    <TableColumn fx:id="colAddress" prefWidth="220" text="Dirección" />
+                    <TableColumn fx:id="colDateOfEntry" prefWidth="110.58974075317383" text="Fecha de Entrada" />
+                    <TableColumn fx:id="colHourOfEntry" prefWidth="98.35498809814453" text="Hora de Entrada" />
+                    <TableColumn fx:id="colReason" prefWidth="110.88458251953125" text="Razón" />
+               <TableColumn fx:id="colDiagnosis" prefWidth="123.531494140625" text="Diagnostico" />
+                    <TableColumn fx:id="colWorkMade" prefWidth="123.46847534179688" text="Trabajo Realizado" />
+               <TableColumn fx:id="colTotalCost" prefWidth="123.5" text="Costo Total" />
                 </columns>
             </TableView>
+
+            <HBox spacing="10">
+                <Button onAction="#saveOrder" text="Guardar" />
+                <Button onAction="#clearForum" text="Limpiar" />
+            </HBox>
 
         </VBox>
     </center>
