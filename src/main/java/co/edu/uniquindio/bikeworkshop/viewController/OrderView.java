@@ -61,7 +61,7 @@ public class OrderView implements Initializable {
 
     public static void setOrderTables(TableColumn<Order, String> colDateOfEntry, TableColumn<Order, String> colHourOfEntry, TableColumn<Order, String> colReason, TableColumn<Order, String> colDiagnosis, TableColumn<Order, String> colWorkMade, TableColumn<Order, String> colTotalCost) {
         colDateOfEntry.setCellValueFactory(new PropertyValueFactory<>("dateOfEntry"));
-        colHourOfEntry.setCellValueFactory(new PropertyValueFactory<>("hour"));
+        colHourOfEntry.setCellValueFactory(new PropertyValueFactory<>("hourOfEntry"));
         colReason.setCellValueFactory(new PropertyValueFactory<>("reason"));
         colDiagnosis.setCellValueFactory(new PropertyValueFactory<>("diagnosis"));
         colWorkMade.setCellValueFactory(new PropertyValueFactory<>("workMade"));
